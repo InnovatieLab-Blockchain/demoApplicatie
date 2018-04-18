@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="nl-NL">
+
+<head>
+  <meta charset="utf-8">
+  <title>Innovatielab Blockchain</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="icon" href="../uno/dist/components/favicon/ro-favicon-donkergeel-0xffb612.png">
+  <link rel="stylesheet" href="../uno/dist/core/uno.css">
+  <script src="../systemjs/dist/system.js"></script>
+  <script type="text/javascript" src="../../../node_modules/web3/dist/web3.js"></script>
+  <script type="text/javascript" src="../../../node_modules/uport-connect/dist/uport-connect.js"></script>
+  <script src="https://unpkg.com/uport-connect/dist/uport-connect.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+  <link rel="stylesheet" href="css/style.css" rel="stylesheet">
+  <script type="text/javascript">
+    System.config({
+      "defaultJSExtensions": true
+    });
+  </script>
+  <!--[if lt IE 9]>
+    <script src="uno/core/compatibility/polyfill-ie8.js"></script>
+    <script src="uno/vendor/js/html5shiv.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <div class="wrapper">
+    <a class="skiplink" href="#content">
+      <span class="skiplink__text">Ga direct naar inhoud</span>
+    </a>
+    <header class="header header--transparent" role="banner">
+      <div class="headerLAB-logo">
+        <a href="#" title="Logo Dienst Uitvoering Onderwijs"></a>
+      </div>
+    </header>
+
+    <main class="skiplink-target main" id="content" tabindex="-1">
+      <div class="container">
+        <header class="row" id="header">
+          <div class="col-xl-12">
+            <div class="content content--header">
+              <section class="content-header">
+                <h1>Diploma uitreiking applicatie</h1>
+                <p>Via onderstaande knoppen kun je diploma's uitreiken en zien hoe vaak ze zijn uitgereikt.
+
+              </section>
+            </div>
+          </div>
+        </header>
+        <article id="login">
+          <div class="container">
+            <div class="row">
+
+              <div class="col-xl-3">
+                <div class="content-background">
+                  <div class="content">
+                    <center>
+                      <img src="img/GESLAAGD.png" class="responsive">
+                    </center>
+                    <p></p>
+                    <h3><br>Begin</h3>
+                    <p></p>
+                    <div class="input">
+                      <a class="btn btn--primary" href="#" onclick="quiz_connect()">Log in</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-3">
+                <div class="content-background">
+                  <div class="content">
+                    <center>
+                      <img src="img/overzicht.png" class="responsive">
+                    </center>
+                    <p></p>
+                    <h3>Bekijk het aantal uitgereikte diploma's</h3>
+                    <p></p>
+                    <div class="input">
+                      <a class="btn btn--primary" href="#" onclick="scoreBoard()">Overzicht</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-3">
+                <div class="content-background">
+                  <div class="content">
+                    <center>
+                      <img src="img/info.png" class="responsive" alt="Info">
+                    </center>
+                    <p></p>
+                    <h3>Extra info</h3>
+                    <p></p>
+                    <div class="input">
+                      <a class="btn btn--primary" href="https://rinkeby.etherscan.io/address/0x80ee9ef002af02f7f45f5b6703413980e58e8375" target="_blank">Rinkeby</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+        </article>
+        </div>
+        <article>
+          <div class="row">
+            <div class="col-xl-12">
+              <div id="after_loginName">
+                <center>
+
+                  <h1 id="userName" /></div>
+              </center>
+              <article>
+                <div id="after_login" class="col-xl-6 col-xl-offset-3">
+                  <form id="quiz" name="quiz">
+                    <div class="content-background">
+
+                      <div class="content">
+                        <h2>Kies het diploma wat je wilt uitreiken</h2>
+                        <fieldset class="input">
+                          <p>
+                            <div style="background-color:Whitesmoke;">
+                              <legend class="background--hemelblauw">Diploma</legend>
+                              <br>
+                              <div class="input__group input__group--radio">
+                                <input type="radio" id="mc" name="vraag1" value="a">GYMNASIUM
+                              </div>
+                              <div class="input__group input__group--radio">
+                                <input type="radio" id="mc" name="vraag1" value="b">VWO
+                              </div>
+                              <div class="input__group input__group--radio">
+                                <input type="radio" id="mc" name="vraag1" value="c">HAVO
+                              </div>
+                              <div class="input__group input__group--radio">
+                                <input type="radio" id="mc" name="vraag1" value="d">VMBO
+                              </div>
+                          </p>
+
+                          <div class="input" <p align="center">
+                            <input id="button1" class="btn btn--primary" type="button" value="Diploma uitreiken" onclick="check();"></input>
+                            </p>
+                          </div>
+                          </div>
+                      </div>
+                  </form>
+              </article>
+
+              <article>
+                <!-- na invullen van de test -->
+                <div id="after_submit" class="col-xl-6 col-xl-offset-3">
+                  <div class="content-background">
+                    <div font-size: 16px;>
+                      <center>
+                        <p id="number_correct"></p>
+                        <p id="bericht"></p>
+                        <font size="3">Je krijgt het diploma:</font>
+                        <br>
+                        <!-- <img id="picture"> -->
+                        <br>
+                        <img id="badge">
+                        <h3><p id="status"></p></h3>
+                        <table>
+                          <tr>
+                            <td>
+                              <p id="knop"></p>
+                            </td>
+                            <td>
+                              <p id="reject" style="background-color:Tomato;">
+                            </td>
+                          </tr>
+                        </table>
+                      </center>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article>
+                <!-- na claimen van de badge -->
+                <div id="after_claim" class="col-xl-6 col-xl-offset-3">
+                  <div class="content-background">
+                    <center>
+                      <div class="background--hemelblauw">
+                        <p>
+                          <br>
+                          <h3>Overzicht uitgereikte diploma's</h3>
+                          <br>
+                        </p>
+                      </div>
+                      <table style="width:100%">
+                        <tr>
+                          <th> </th>
+                          <th>Diploma</th>
+                          <th>Aantal keer uitgereikt</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <center><img src="img/GYMNASIUM.png" width="70px"></center>
+                          </td>
+                          <td>
+                            <center>
+                              <h5>GYMNASIUM<h5></center></td>
+                                        <td><center><h2 id = "GYMNASIUM" /></center></td>
+                                      </tr>
+                                      <tr>
+                                        <td><center><img src="img/VWO.png" width = "70px"></center></td>
+                                        <td><center><h5>VWO<h5></center></td>
+                                          <td><center><h2 id = "VWO" /></center></td>
+                                       </tr>
+                                        <tr>
+                                          <td><center><img src="img/HAVO.png" width = "70px"></center></td>
+                                          <td><center><h5>HAVO<h5></center></td>
+                                            <td><center><h2 id = "HAVO" /></center></td>
+                                          </tr>
+                                          <tr>
+                                            <td><center><img src="img/VMBO.png" width = "70px"></center></td>
+                                            <td><center><h5>VMBO<h5></center></td>
+                                              <td><center><h2 id = "VMBO" /></center></td>
+                                            </tr>
+                                          </table>
+                                          <div class="input">
+                                            <p align="center"><input id = "button" class="btn btn--primary" type="button" value = "Opnieuw beginnen" onclick="redirect();"></p>
+                                          </div>
+                                        </center>
+                                      </div>
+                                    </div>
+                             </article>
+
+                             <article id="scoreboard2">
+                                    <div class="col-xl-6 col-xl-offset-3">
+                                      <div class="content-background">
+                                        <center>
+                                          <div class="background--hemelblauw">
+                                            <p><br>
+                                              <h3>Overzicht uitgereikte diploma's</h3><br></p>
+                                            </div>
+                                            <table style="width:100%">
+                                              <tr>
+                                                <th> </th>
+                                                <th>Diploma</th>
+                                                <th>Aantal keer uitgereikt</th>
+                                              </tr>
+                                              <tr>
+                                                <td>
+                                                  <center><img src="img/GYMNASIUM.png" width="70px"></center>
+                                                </td>
+                                                <td>
+                                                  <center>
+                                                    <h5>GYMNASIUM<h5></center></td>
+                                                      <td><center><h2 id = "GYMNASIUM2" /></center></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td><center><img src="img/VWO.png" width = "70px"></center></td>
+                                                      <td><center><h5>VWO<h5></center></td>
+                                                        <td><center><h2 id = "VWO2" /></center></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td><center><img src="img/HAVO.png" width = "70px"></center></td>
+                                                        <td><center><h5>HAVO<h5></center></td>
+                                                          <td><center><h2 id = "HAVO2" /></center></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td><center><img src="img/VMBO.png" width = "70px"></center></td>
+                                                          <td><center><h5>VMBO<h5></center></td>
+                                                            <td><center><h2 id = "VMBO2" /></center></td>
+                                                          </tr>
+
+                                                        </table>
+                                                        <div class="input">
+                                                          <p align="center"><input id = "button" class="btn btn--primary" type="button" value = "Opnieuw beginnen" onclick="redirect();"></p>
+                                                        </div>
+                                                      </center>
+                                                    </div>
+                                                  </div>
+                                                </article>
+
+                                                <script type="text/javascript">
+                                                  /* Load tab component */
+                                                  System.import('/duo/rio/uno/dist/components/tabs/tabs.js').then(function (module) {
+                                                    /* Create tab component */
+                                                    var tab = new module.Tabs(document.querySelector('.tab'));
+
+                                                    /* Activate second tab */
+                                                    tab.openTab(0);
+                                                  });
+
+                                  // Load collapse component
+                                  System.import('/duo/rio/uno/dist/components/collapse/collapse.js').then(function (module) {
+                                    // Select all collapsible elements on the page
+                                    var collapses = document.querySelectorAll('[x-uno-collapse]');
+                                    // Initialize all collapses
+                                    for (var i = 0; i < collapses.length; i++) {
+                                      new module.Collapse(collapses.item(i));
+                                    }
+                                  });
+                                </script>
+                                <script src="../../js/quiz_methods.js"></script>
+
+
+</body>
+</html>
